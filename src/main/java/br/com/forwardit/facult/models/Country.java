@@ -5,13 +5,16 @@
  */
 package br.com.forwardit.facult.models;
 
+import java.util.List;
+
 /**
  *
- * @author mauri
+ * @author Maurilio
  */
-public class Grade {
+public class Country {
     private Integer id;
-    private double grade;
+    private String name;
+    private List<State> states;
 
     public Integer getId() {
         return id;
@@ -21,11 +24,19 @@ public class Grade {
         this.id = id;
     }
 
-    public double getGrade() {
-        return grade;
+    public String getName() {
+        return name;
     }
 
-    public void setGrade(double grade) {
-        this.grade = grade;
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public List<State> getStates() {
+        return states;
+    }
+
+    public void setStates(List<State> states) {
+        this.states = states;
     }
 }

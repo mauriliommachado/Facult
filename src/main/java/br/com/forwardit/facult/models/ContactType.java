@@ -7,8 +7,8 @@ package br.com.forwardit.facult.models;
 
 /**
  *
- * @author mauri
+ * @author Maurilio
  */
-public enum PersonType {
-     STUDANT,GUARDIAN,EMPLOYEE
+public enum ContactType {
+    EMAIL,PHONE
 }
