@@ -27,7 +27,17 @@ public class Evaluation {
     @OneToOne
     private Grade grade;
     @ManyToOne
-    private Course course; 
+    private Course course;
+    @OneToMany
+    private Person person;
+
+    public Person getPerson() {
+        return person;
+    }
+
+    public void setPerson(Person person) {
+        this.person = person;
+    }
 
     public Integer getId() {
         return id;

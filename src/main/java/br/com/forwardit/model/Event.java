@@ -30,7 +30,7 @@ public class Event {
     @ElementCollection
     private List<Messages> messages;
     @ElementCollection
-    private List<Evaluation> evaluations;
+    private Evaluation evaluation;
     private EventType type;
     @ManyToOne
     private Course course;
@@ -59,13 +59,14 @@ public class Event {
         this.messages = messages;
     }
 
-    public List<Evaluation> getEvaluations() {
-        return evaluations;
+    public Evaluation getEvaluation() {
+        return evaluation;
     }
 
-    public void setEvaluations(List<Evaluation> evaluations) {
-        this.evaluations = evaluations;
+    public void setEvaluation(Evaluation evaluation) {
+        this.evaluation = evaluation;
     }
+
 
     public EventType getType() {
         return type;

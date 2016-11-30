@@ -38,10 +38,8 @@ public class Course {
     private List<Person> supports;
     @OneToOne
     private AttendantGroup enrolled;
-    @Min(1)
+    @Min(0)
     private int numberOfEvaluations;
-    @ElementCollection
-    private List<Evaluation> evaluations;
     @OneToOne
     private Grade successGrade;
     @OneToOne
