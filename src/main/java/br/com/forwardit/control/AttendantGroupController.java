@@ -5,8 +5,8 @@
  */
 package br.com.forwardit.control;
 
-import br.com.forwardit.dao.AddressDAO;
-import br.com.forwardit.model.Address;
+import br.com.forwardit.dao.AttendantGroupDAO;
+import br.com.forwardit.model.AttendantGroup;
 import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -25,27 +25,27 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
  */
 @Controller
 @Transactional
-@RequestMapping("/address")
-public class AddressController {
+@RequestMapping("/attendant-group")
+public class AttendantGroupController {
     @Autowired
-    private AddressDAO addressDAO;
+    private AttendantGroupDAO attendantGroupDAO;
     
     @RequestMapping(method = RequestMethod.POST)
     public ModelAndView save(@RequestParam("summary") MultipartFile summary, 
-            @Validated Address address, BindingResult bindingResult,
+            @Validated AttendantGroup attendantGroup, BindingResult bindingResult,
             RedirectAttributes redirectAttributes) {
         if (bindingResult.hasErrors()) {
-            return form(address);
+            return form(attendantGroup);
         }
-        addressDAO.save(address);
+        attendantGroupDAO.save(attendantGroup);
         redirectAttributes.addFlashAttribute("sucesso",
                 "Endereço cadastrado com sucesso");
         return new ModelAndView("redirect:persons");
     }
     
     @RequestMapping("/form")
-    public ModelAndView form(Address address) {
-        ModelAndView modelAndView = new ModelAndView("address/form");
+    public ModelAndView form(AttendantGroup attendantGroup) {
+        ModelAndView modelAndView = new ModelAndView("persons/form");
         return modelAndView;
     }
 }

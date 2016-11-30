@@ -6,14 +6,25 @@
 package br.com.forwardit.model;
 
 import java.util.List;
+import javax.persistence.ElementCollection;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import org.hibernate.validator.constraints.NotBlank;
 
 /**
  *
  * @author Maurilio
  */
+@Entity
 public class AttendantGroup {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
+    @NotBlank
     private String description;
+    @ElementCollection
     private List<Person> attendants;
 
     public Integer getId() {

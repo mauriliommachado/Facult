@@ -5,14 +5,28 @@
  */
 package br.com.forwardit.model;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
+
 /**
  *
  * @author mauri
  */
+@Entity
 public class Evaluation {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
+    @ManyToOne
     private Event event;
+    @OneToOne
     private Grade grade;
+    @ManyToOne
     private Course course; 
 
     public Integer getId() {

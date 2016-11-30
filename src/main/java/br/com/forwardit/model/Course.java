@@ -6,23 +6,49 @@
 package br.com.forwardit.model;
 
 import java.util.List;
+import javax.persistence.ElementCollection;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
+import javax.validation.constraints.Min;
+import org.hibernate.validator.constraints.NotBlank;
 
 /**
  *
  * @author Maurilio
  */
+@Entity
 public class Course {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
+    @NotBlank
     private String title;
+    @NotBlank
     private String description;
+    @ManyToOne
     private Schedule schedule;
+    @ManyToOne
     private Person minister;
+    @ElementCollection
     private List<Person> supports;
+    @OneToOne
     private AttendantGroup enrolled;
+    @Min(1)
     private int numberOfEvaluations;
+    @ElementCollection
+    private List<Evaluation> evaluations;
+    @OneToOne
     private Grade successGrade;
+    @OneToOne
     private Grade failGrade;
+    @OneToOne
     private Grade midTermGrade;
+    @ElementCollection
     private List<Event> events;
 
     public Integer getId() {

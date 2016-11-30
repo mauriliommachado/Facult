@@ -6,6 +6,7 @@
 package br.com.forwardit.dao;
 
 import br.com.forwardit.model.Address;
+import br.com.forwardit.model.AttendantGroup;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -17,23 +18,23 @@ import org.springframework.stereotype.Repository;
  * @author mauri
  */
 @Repository
-public class AddressDAO implements DAO<Address>{
+public class AttendantGroupDAO implements DAO<AttendantGroup>{
     @PersistenceContext
     private EntityManager manager;
 
-    public void save(Address product) {
-        manager.persist(product);
+    public void save(AttendantGroup attendantGroup) {
+        manager.persist(attendantGroup);
     }
 
-    public List<Address> list() {
-        return manager.createQuery("select distinct(a) from Address a ", Address.class).getResultList();
+    public List<AttendantGroup> list() {
+        return manager.createQuery("select distinct(ag) from AttendantGroup ag ", AttendantGroup.class).getResultList();
     }
 
-    public Address find(Integer id) {
-        TypedQuery<Address> query = manager
+    public AttendantGroup find(Integer id) {
+        TypedQuery<AttendantGroup> query = manager
                 .createQuery(
-                        "select distinct(p) from Address a where a.id=:id",
-                        Address.class).setParameter("id", id);
+                        "select distinct(ag) from AttendantGroup ag where ag.id=:id",
+                        AttendantGroup.class).setParameter("id", id);
         return query.getSingleResult();
     }    
 }

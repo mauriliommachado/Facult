@@ -5,14 +5,20 @@
  */
 package br.com.forwardit.model;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import org.joda.time.LocalDateTime;
 
 /**
  *
  * @author Maurilio
  */
+@Entity
 public class Schedule {
-
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private LocalDateTime createDate;
     private LocalDateTime startDate;
@@ -67,6 +73,5 @@ public class Schedule {
     public void setFrequency(Frequency frequency) {
         this.frequency = frequency;
     }
-    
-    
+
 }

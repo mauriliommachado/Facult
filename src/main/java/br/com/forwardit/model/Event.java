@@ -6,19 +6,33 @@
 package br.com.forwardit.model;
 
 import java.util.List;
+import javax.persistence.ElementCollection;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 
 /**
  *
  * @author mauri
  */
+@Entity
 public class Event {
-
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
+    @OneToOne
     private Schedule schedule;
+    @ElementCollection
     private List<Person> attendants;
+    @ElementCollection
     private List<Messages> messages;
+    @ElementCollection
     private List<Evaluation> evaluations;
     private EventType type;
+    @ManyToOne
     private Course course;
 
     public Integer getId() {
@@ -60,7 +74,7 @@ public class Event {
     public void setType(EventType type) {
         this.type = type;
     }
-    
+
     public Course getCourse() {
         return course;
     }
@@ -76,5 +90,5 @@ public class Event {
     public void setAttendants(List<Person> attendants) {
         this.attendants = attendants;
     }
-    
+
 }

@@ -9,6 +9,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 import org.hibernate.validator.constraints.NotBlank;
 
 /**
@@ -22,7 +23,8 @@ public class Address {
     private Integer id;
     @NotBlank
     private String street;
-//    private City city;
+    @OneToOne
+    private City city;
     @NotBlank
     private String zipCode;
 
@@ -42,13 +44,13 @@ public class Address {
         this.street = street;
     }
 
-//    public City getCity() {
-//        return city;
-//    }
-//
-//    public void setCity(City city) {
-//        this.city = city;
-//    }
+    public City getCity() {
+        return city;
+    }
+
+    public void setCity(City city) {
+        this.city = city;
+    }
 
     public String getZipCode() {
         return zipCode;

@@ -6,27 +6,48 @@
 package br.com.forwardit.model;
 
 import java.util.List;
+import javax.persistence.ElementCollection;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.OneToOne;
+import org.hibernate.validator.constraints.NotBlank;
 import org.joda.time.LocalDateTime;
 
 /**
  *
  * @author mauri
  */
+@Entity
 public class Person {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
+    @NotBlank
     private String name;
+    @NotBlank
     private String record;
+    @NotBlank
     private String password;
     private LocalDateTime registerDate;
     private LocalDateTime birthday;
+    @OneToOne
     private Address address;
+    @ElementCollection
     private List<Person> guardians;
+    @NotBlank
     private String cpf;
+    @ElementCollection
     private List<Contact> contacts;
+    @NotBlank
     private String notes;
+    @ElementCollection
     private List<Messages> messages;
     private PersonType type;
+    @ElementCollection
     private List<Evaluation> evaluations;
+    @ElementCollection
     private List<Course> courses;
 
     public Integer getId() {

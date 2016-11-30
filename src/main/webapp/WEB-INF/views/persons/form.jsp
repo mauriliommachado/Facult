@@ -21,17 +21,14 @@
             </div> 
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
-                    <li><a href="${contextPath}/Livraria/">Home</a></li>
-                    <li class="active"><a href="${contextPath}/Livraria/produtos/">Produtos <span class="sr-only">(current)</span></a></li>
-                </ul>
-                <ul class="nav navbar-nav navbar-right">
-                    <li><a href="${spring:mvcUrl('SCC#items').build()}" rel="nofollow"><span class="glyphicon glyphicon-shopping-cart"></span><span class="badge">${shoppingCart.quantity}</span></a></li>
+                    <li><a href="${contextPath}/FitEdu/">Home</a></li>
+                    <li class="active"><a href="${contextPath}/FitEdu/address/">Endereços <span class="sr-only">(current)</span></a></li>
                 </ul>
             </div>
         </nav>
 
         <div name="content">
-            <form:form method="post" action="${spring:mvcUrl('PC#save').build()}"
+            <form:form method="post" action=""
                        commandName="product" enctype="multipart/form-data"
                        class="form-horizontal">
                 <div class="form-group">
@@ -69,15 +66,6 @@
                     </div>
                     <form:errors path="summaryPath" class="alert alert-danger"/>
                 </div>
-                <c:forEach items="${types}" var="bookType" varStatus="status">
-                    <div class="form-group">
-                        <label for="preco_${bookType}" class="control-label col-sm-2">${bookType}:</label>
-                        <div class="col-sm-6">
-                            <form:input class="form-control" path="prices[${status.index}].value" id="preco_${bookType}"/>
-                        </div>
-                        <form:input type="hidden" path="prices[${status.index}].bookType" value="${bookType}"/>
-                    </div>
-                </c:forEach>
                 <div class="col-sm-offset-2 ">
                     <button type="submit" class="btn btn-default">Submit</button>
                 </div>
