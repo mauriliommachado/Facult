@@ -25,13 +25,26 @@
             </div> 
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
-                    <li class="active"><a href="${contextPath}/FitEdu/">Home <span class="sr-only">(current)</span></a></li>
-                    <li><a href="${contextPath}/FitEdu/grades">Notas</a></li>
+                    <li><a href="${contextPath}/FitEdu/">Home</a></li>
+                    <li class="active"><a href="${contextPath}/FitEdu/grades/form">Notas <span class="sr-only">(current)</span></a></li>
                 </ul>
             </div>
         </nav>
-                <div name="content">
-                    <h1>Bem vindo!</h1>
+        <div name="content">
+            <form:form method="post" action="${spring:mvcUrl('GC#save').build()}"
+                       commandName="grade" enctype="multipart/form-data"
+                       class="form-horizontal">
+                <div class="form-group">
+                    <label for="grade" class="control-label col-sm-2">Nota:</label>
+                    <div class="col-sm-6">
+                        <form:input class="form-control" path="grade"/>
+                    </div>
+                    <form:errors path="grade" class="alert alert-danger"/>
                 </div>
+                <div class="col-sm-offset-2 ">
+                    <button type="submit" class="btn btn-default">Submit</button>
+                </div>
+            </form:form>
+        </div>
     </body>
 </html>

@@ -25,13 +25,30 @@
             </div> 
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
-                    <li class="active"><a href="${contextPath}/FitEdu/">Home <span class="sr-only">(current)</span></a></li>
-                    <li><a href="${contextPath}/FitEdu/grades">Notas</a></li>
+                    <li><a href="${contextPath}/FitEdu/">Home</a></li>
+                    <li class="active"><a href="${contextPath}/FitEdu/grades">Notas <span class="sr-only">(current)</span></a></li>
                 </ul>
             </div>
-        </nav>
-                <div name="content">
-                    <h1>Bem vindo!</h1>
-                </div>
+        </nav>  
+        <div name="content">
+            <h2>${sucesso}</h2>
+            <div class="panel panel-default">
+            <div class="panel-heading">Notas</div>
+            <table class="table">
+                 <tr>
+                     <td>Nota</td>
+                </tr>
+                <c:forEach items="${grades}" var="grade">
+                    <tr>
+                        <td>${grade.grade}</td>
+                    </tr>
+                </c:forEach>
+            </table>
+        </div>
+            <br>
+            <a href="${contextPath}/FitEdu/grades/form"
+                    class="btn btn-default" 
+                    aria-label="Left Align">Adicionar novo</a>
+        </div>
     </body>
 </html>
