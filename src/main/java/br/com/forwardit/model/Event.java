@@ -11,7 +11,9 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
 /**
@@ -25,12 +27,12 @@ public class Event {
     private Integer id;
     @OneToOne
     private Schedule schedule;
-    @ElementCollection
+    @ManyToMany
     private List<Person> attendants;
-    @ElementCollection
+    @ManyToMany
     private List<Messages> messages;
-    @ElementCollection
-    private Evaluation evaluation;
+    @OneToMany
+    private List<Evaluation> evaluation;
     private EventType type;
     @ManyToOne
     private Course course;
@@ -59,14 +61,13 @@ public class Event {
         this.messages = messages;
     }
 
-    public Evaluation getEvaluation() {
+    public List<Evaluation> getEvaluation() {
         return evaluation;
     }
 
-    public void setEvaluation(Evaluation evaluation) {
+    public void setEvaluation(List<Evaluation> evaluation) {
         this.evaluation = evaluation;
     }
-
 
     public EventType getType() {
         return type;

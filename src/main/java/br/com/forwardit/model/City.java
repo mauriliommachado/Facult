@@ -27,19 +27,9 @@ public class City {
     private String name;
     @ManyToOne
     private State state;
-    @ElementCollection
-    private List<Address> addresses;
 
     public Integer getId() {
         return id;
-    }
-
-    public List<Address> getAddresses() {
-        return addresses;
-    }
-
-    public void setAddresses(List<Address> addresses) {
-        this.addresses = addresses;
     }
 
     public void setId(Integer id) {

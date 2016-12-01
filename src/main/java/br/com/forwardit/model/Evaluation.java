@@ -27,8 +27,6 @@ public class Evaluation {
     @OneToOne
     private Grade grade;
     @ManyToOne
-    private Course course;
-    @OneToMany
     private Person person;
 
     public Person getPerson() {
@@ -61,14 +59,5 @@ public class Evaluation {
 
     public void setGrade(Grade grade) {
         this.grade = grade;
-    }
-
-    public Course getCourse() {
-        return course;
-    }
-
-    public void setCourse(Course course) {
-        this.course = course;
-    }
-    
+    }    
 }

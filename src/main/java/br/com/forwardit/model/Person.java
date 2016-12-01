@@ -6,11 +6,11 @@
 package br.com.forwardit.model;
 
 import java.util.List;
-import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToOne;
 import org.hibernate.validator.constraints.NotBlank;
 import org.joda.time.LocalDateTime;
@@ -21,6 +21,7 @@ import org.joda.time.LocalDateTime;
  */
 @Entity
 public class Person {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
@@ -34,20 +35,17 @@ public class Person {
     private LocalDateTime birthday;
     @OneToOne
     private Address address;
-    @ElementCollection
-    private List<Person> guardians;
     @NotBlank
     private String cpf;
-    @ElementCollection
-    private List<Contact> contacts;
+    @ManyToMany
+    private List<Person> contacts;
+    private boolean guardian;
     @NotBlank
     private String notes;
-    @ElementCollection
+    @ManyToMany
     private List<Messages> messages;
     private PersonType type;
-    @ElementCollection
-    private List<Evaluation> evaluations;
-    @ElementCollection
+    @ManyToMany
     private List<Course> courses;
 
     public Integer getId() {
@@ -90,28 +88,12 @@ public class Person {
         this.address = address;
     }
 
-    public List<Person> getGuardians() {
-        return guardians;
-    }
-
-    public void setGuardians(List<Person> guardians) {
-        this.guardians = guardians;
-    }
-
     public String getCpf() {
         return cpf;
     }
 
     public void setCpf(String cpf) {
         this.cpf = cpf;
-    }
-
-    public List<Contact> getContacts() {
-        return contacts;
-    }
-
-    public void setContacts(List<Contact> contacts) {
-        this.contacts = contacts;
     }
 
     public String getNotes() {
@@ -138,14 +120,6 @@ public class Person {
         this.type = type;
     }
 
-    public List<Evaluation> getEvaluations() {
-        return evaluations;
-    }
-
-    public void setEvaluations(List<Evaluation> evaluations) {
-        this.evaluations = evaluations;
-    }
-
     public String getRecord() {
         return record;
     }
@@ -169,4 +143,22 @@ public class Person {
     public void setPassword(String password) {
         this.password = password;
     }
+
+    public List<Person> getContacts() {
+        return contacts;
+    }
+
+    public void setContacts(List<Person> contacts) {
+        this.contacts = contacts;
+    }
+
+    public boolean isGuardian() {
+        return guardian;
+    }
+
+    public void setGuardian(boolean guardian) {
+        this.guardian = guardian;
+    }
+    
+
 }

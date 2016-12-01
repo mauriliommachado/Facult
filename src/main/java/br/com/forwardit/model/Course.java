@@ -31,8 +31,6 @@ public class Course {
     @NotBlank
     private String description;
     @ManyToOne
-    private Schedule schedule;
-    @ManyToOne
     private Person minister;
     @ElementCollection
     private List<Person> supports;
@@ -71,14 +69,6 @@ public class Course {
 
     public void setDescription(String description) {
         this.description = description;
-    }
-
-    public Schedule getSchedule() {
-        return schedule;
-    }
-
-    public void setSchedule(Schedule schedule) {
-        this.schedule = schedule;
     }
 
     public Person getMinister() {

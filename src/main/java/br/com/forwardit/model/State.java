@@ -6,7 +6,6 @@
 package br.com.forwardit.model;
 
 import java.util.List;
-import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -26,7 +25,7 @@ public class State {
     private Integer id;
     @NotBlank
     private String name;
-    @ElementCollection
+    @OneToMany
     private List<City> citys;
     @ManyToOne
     private Country country;

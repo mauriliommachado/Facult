@@ -24,8 +24,6 @@ public class Country {
     private Integer id;
     @NotBlank
     private String name;
-    @ElementCollection
-    private List<State> states;
 
     public Integer getId() {
         return id;
@@ -41,13 +39,5 @@ public class Country {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public List<State> getStates() {
-        return states;
-    }
-
-    public void setStates(List<State> states) {
-        this.states = states;
     }
 }
