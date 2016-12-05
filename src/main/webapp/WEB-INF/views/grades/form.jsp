@@ -21,7 +21,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <span class="navbar-brand">Livraria FIT</span>
+                <span class="navbar-brand">Facult</span>
             </div> 
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
@@ -31,13 +31,13 @@
             </div>
         </nav>
         <div name="content">
-            <form:form method="post" action="${spring:mvcUrl('GC#save').build()}"
+            <form:form method="post" servletRelativeAction="${spring:mvcUrl('GC#save').build()}"
                        commandName="grade" enctype="multipart/form-data"
-                       class="form-horizontal">
+                       cssClass="form-horizontal">
                 <div class="form-group">
                     <label for="grade" class="control-label col-sm-2">Nota:</label>
                     <div class="col-sm-6">
-                        <form:input class="form-control" path="grade"/>
+                        <form:input class="form-control" type="number" path="grade"/>
                     </div>
                     <form:errors path="grade" class="alert alert-danger"/>
                 </div>

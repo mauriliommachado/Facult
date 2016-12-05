@@ -8,8 +8,12 @@ package br.com.forwardit.dao;
 import br.com.forwardit.model.Person;
 import java.util.List;
 import javax.persistence.EntityManager;
+import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Repository;
 
 /**
@@ -17,7 +21,7 @@ import org.springframework.stereotype.Repository;
  * @author mauri
  */
 @Repository
-public class PersonDAO implements DAO<Person> {
+public class PersonDAO implements DAO<Person>, UserDetailsService {
 
     @PersistenceContext
     private EntityManager manager;
@@ -39,5 +43,20 @@ public class PersonDAO implements DAO<Person> {
                         "select distinct(p) from Person p where p.id=:id",
                         Person.class).setParameter("id", id);
         return query.getSingleResult();
+    }
+
+    @Override
+    public UserDetails loadUserByUsername(String userName) throws UsernameNotFoundException {
+        TypedQuery<Person> query = manager
+                .createQuery(
+                        "select distinct(p) from Person p where p.record=:record",
+                        Person.class).setParameter("record", userName);
+        Person p;
+        try{
+            p = query.getSingleResult();
+        }catch(NoResultException nre){
+            throw new UsernameNotFoundException("O usuário "+userName+" não existe");
+        }
+        return p;
     }
 }

@@ -2,7 +2,6 @@
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 <%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
-<%@taglib uri="http://www.springframework.org/security/tags" prefix="security"%>
 <!DOCTYPE html>
 <html>
     <head>
@@ -26,26 +25,31 @@
             </div> 
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
-                    <li class="active"><a href="${contextPath}/FitEdu/">Home <span class="sr-only">(current)</span></a></li>
-                    <li><a href="${contextPath}/FitEdu/grades">Notas</a></li>
-                </ul>
-                <ul class="nav navbar-nav navbar-right">
-                    <security:authorize access="isAuthenticated()">
-                        <security:authentication property="principal" var="user" />
-                        <li><a href="${contextPath}/FitEdu/logout"><span class="glyphicon glyphicon-user"> Logout</span></a></li>
-                    </security:authorize>
-                    <security:authorize access="isAnonymous()">
-                        <security:authentication property="principal" var="user" />
-                        <li><a href="${contextPath}/FitEdu/auth/login"><span class="glyphicon glyphicon-user"> Login</span></a></li>
-                    </security:authorize>
+                    <li><a href="${contextPath}/FitEdu/">Home</a></li>
+                    <li class="active"><a href="${contextPath}/FitEdu/grades/form">Notas <span class="sr-only">(current)</span></a></li>
                 </ul>
             </div>
         </nav>
         <div name="content">
-            <security:authorize access="isAuthenticated()">
-                <security:authentication property="principal" var="user" />
-                <h1>Bem vindo ${user.name}</h1> 
-            </security:authorize>
+            <form:form cssClass="form-horizontal" servletRelativeAction="/login">
+                <div class="form-group">
+                    <label for="username" class="control-label col-sm-2">Usuário</label>
+                    <div class="col-sm-6">
+                        <input class="form-control" name="username"/>
+                    </div>
+                    <form:errors path="username" class="alert alert-danger"/>
+                </div>
+                <div class="form-group">
+                    <label for="password" class="control-label col-sm-2">Senha:</label>
+                    <div class="col-sm-6">
+                        <input class="form-control" name="password"/>
+                    </div>
+                    <form:errors path="password" class="alert alert-danger"/>
+                </div>
+                <div class="col-sm-offset-2 ">
+                    <button type="submit" class="btn btn-default">Submit</button>
+                </div>
+            </form:form>
         </div>
     </body>
 </html>

@@ -5,8 +5,11 @@
  */
 package br.com.forwardit.model;
 
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -14,13 +17,15 @@ import javax.persistence.ManyToMany;
 import javax.persistence.OneToOne;
 import org.hibernate.validator.constraints.NotBlank;
 import org.joda.time.LocalDateTime;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 
 /**
  *
  * @author mauri
  */
 @Entity
-public class Person {
+public class Person implements UserDetails{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -47,6 +52,8 @@ public class Person {
     private PersonType type;
     @ManyToMany
     private List<Course> courses;
+    @ManyToMany(fetch = FetchType.EAGER)
+    private List<Roles> roles = new ArrayList<>();
 
     public Integer getId() {
         return id;
@@ -159,6 +166,42 @@ public class Person {
     public void setGuardian(boolean guardian) {
         this.guardian = guardian;
     }
-    
 
+    public List<Roles> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(List<Roles> roles) {
+        this.roles = roles;
+    }
+
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        return getRoles();
+    }
+
+    @Override
+    public String getUsername() {
+        return getRecord();
+    }
+
+    @Override
+    public boolean isAccountNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isAccountNonLocked() {
+        return true;
+    }
+
+    @Override
+    public boolean isCredentialsNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isEnabled() {
+        return true;
+    }
 }
