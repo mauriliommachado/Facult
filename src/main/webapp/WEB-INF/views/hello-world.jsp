@@ -24,20 +24,21 @@
                 </button>
                 <span class="navbar-brand">Facult</span>
             </div> 
+            <security:authentication property="principal" var="user" />
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
                     <li class="active"><a href="${contextPath}/FitEdu/">Home <span class="sr-only">(current)</span></a></li>
-                    <li><a href="${contextPath}/FitEdu/grades">Notas</a></li>
+                        <security:authorize access="isAuthenticated()">
+                        <li><a href="${contextPath}/FitEdu/grades">Notas</a></li>
+                        </security:authorize>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
                     <security:authorize access="isAuthenticated()">
-                        <security:authentication property="principal" var="user" />
                         <li><a href="${contextPath}/FitEdu/logout"><span class="glyphicon glyphicon-user"> Logout</span></a></li>
-                    </security:authorize>
-                    <security:authorize access="isAnonymous()">
-                        <security:authentication property="principal" var="user" />
+                        </security:authorize>
+                        <security:authorize access="isAnonymous()">
                         <li><a href="${contextPath}/FitEdu/auth/login"><span class="glyphicon glyphicon-user"> Login</span></a></li>
-                    </security:authorize>
+                        </security:authorize>
                 </ul>
             </div>
         </nav>
