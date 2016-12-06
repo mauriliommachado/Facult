@@ -26,6 +26,11 @@ public class GradeDAO implements DAO<Grade> {
     public void save(Grade entity) {
         manager.persist(entity);
     }
+    
+    
+    public void remove(Integer id) {
+        manager.remove(find(id));
+    }
 
     @Override
     public List<Grade> list() {
