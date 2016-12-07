@@ -4,7 +4,7 @@
 <%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%> 
 <%@taglib tagdir="/WEB-INF/tags" prefix="customTags"%>
 
-<customTags:page title="Lista de Notas" active="grades">
+<customTags:dashboard title="Lista de Notas" active="register">
     <h2>${sucesso}</h2>
     <div class="panel panel-default" style="margin: 10px;padding: 10px">
         <div class="table-responsive">
@@ -37,4 +37,4 @@
            aria-label="Left Align">Adicionar novo</a>
     </div>
 
-</customTags:page>
+</customTags:dashboard>

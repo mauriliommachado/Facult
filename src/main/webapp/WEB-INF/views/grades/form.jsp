@@ -4,7 +4,7 @@
 <%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%> 
 <%@taglib tagdir="/WEB-INF/tags" prefix="customTags"%>
 
-<customTags:page title="Home" active="grades">
+<customTags:dashboard title="Home" active="register">
     <form:form method="post" servletRelativeAction="${spring:mvcUrl('GC#save').build()}"
                commandName="grade" enctype="multipart/form-data"
                cssClass="form-horizontal">
@@ -19,4 +19,4 @@
             <button type="submit" class="btn btn-default">Submit</button>
         </div>
     </form:form>
-</customTags:page>
+</customTags:dashboard>

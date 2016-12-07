@@ -4,24 +4,33 @@
 <%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%> 
 <%@taglib tagdir="/WEB-INF/tags" prefix="customTags"%>
 
-<customTags:page title="Home" active="login">
-    <form:form cssClass="form-horizontal" servletRelativeAction="/login">
-        <div class="form-group">
-            <label for="username" class="control-label col-sm-2">Usuário</label>
-            <div class="col-sm-6">
-                <input class="form-control" name="username"/>
+<customTags:page title="Login" active="login">
+    <div class="row">
+        <div class="col-md-4 col-md-offset-4">
+            <div class="login-panel panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Login</h3>
+                </div>
+                <div class="panel-body">
+                    <form:form cssClass="form" servletRelativeAction="/login">
+                        <fieldset>
+                             <div class="form-group">
+                                    <input class="form-control" placeholder="Id" name="username" type="text" autofocus>
+                                </div>
+                                <div class="form-group">
+                                    <input class="form-control" placeholder="Password" name="password" type="password" value="">
+                                </div>
+<!--                            <div class="checkbox">
+                                <label>
+                                    <input name="remember" type="checkbox" value="Remember Me">Lembrar
+                                </label>
+                            </div>-->
+                            <button class="btn btn-lg btn-primary btn-block" type="submit">Login</button>
+                        </fieldset>
+                    </form:form>
+                </div>
             </div>
-            <form:errors path="username" class="alert alert-danger"/>
         </div>
-        <div class="form-group">
-            <label for="password" class="control-label col-sm-2">Senha:</label>
-            <div class="col-sm-6">
-                <input class="form-control" name="password"/>
-            </div>
-            <form:errors path="password" class="alert alert-danger"/>
-        </div>
-        <div class="col-sm-offset-2 ">
-            <button type="submit" class="btn btn-default">Submit</button>
-        </div>
-    </form:form>
+    </div>
 </customTags:page>
+
