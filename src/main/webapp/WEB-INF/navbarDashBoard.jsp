@@ -23,7 +23,7 @@
                 <a href="" id="register" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Cadastros <span class="caret"></span></a>
                 <ul class="dropdown-menu">
                     <li ><a href="${contextPath}/FitEdu/grades">Notas</a></li>
-                    <li><a href="#">Pessoas</a></li>
+                    <li><a href="${contextPath}/FitEdu/persons">Pessoas</a></li>
                     <li><a href="#">Turmas</a></li>
                     <li role="separator" class="divider"></li>
                     <li><a href="#">Cursos</a></li>

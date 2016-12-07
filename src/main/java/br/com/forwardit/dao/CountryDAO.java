@@ -40,4 +40,9 @@ public class CountryDAO implements DAO<Country> {
                         Country.class).setParameter("id", id);
         return query.getSingleResult();
     }
+
+    @Override
+    public void remove(Integer id) {
+        manager.remove(find(id));
+    }
 }

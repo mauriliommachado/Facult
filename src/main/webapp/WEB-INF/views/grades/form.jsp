@@ -4,19 +4,26 @@
 <%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%> 
 <%@taglib tagdir="/WEB-INF/tags" prefix="customTags"%>
 
-<customTags:dashboard title="Home" active="register">
-    <form:form method="post" servletRelativeAction="${spring:mvcUrl('GC#save').build()}"
-               commandName="grade" enctype="multipart/form-data"
-               cssClass="form-horizontal">
-        <div class="form-group">
-            <label for="grade" class="control-label col-sm-2">Nota:</label>
-            <div class="col-sm-6">
-                <form:input class="form-control" type="number" path="grade"/>
+<customTags:dashboard title="Cadastro de Notas" active="register">
+    <div class="row">
+        <div class="col-md-4 col-md-offset-4">
+            <div class="login-panel panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Cadastro de Notas</h3>
+                </div>
+                <div class="panel-body">
+                    <form:form method="post" servletRelativeAction="${spring:mvcUrl('GC#save').build()}"
+                               commandName="grade" enctype="multipart/form-data" cssClass="form">
+                        <fieldset>
+                            <form:label path="grade" class="control-label">Nota:</form:label>
+                                <div class="form-group">
+                                <form:input required="required" class="form-control" type="number" path="grade" onfocus="this.select();" autofocus="autofocus"/>
+                            </div>
+                            <button class="btn btn-primary" type="submit">Gravar</button>
+                        </fieldset>
+                    </form:form>
+                </div>
             </div>
-            <form:errors path="grade" class="alert alert-danger"/>
         </div>
-        <div class="col-sm-offset-2 ">
-            <button type="submit" class="btn btn-default">Submit</button>
-        </div>
-    </form:form>
+    </div>
 </customTags:dashboard>

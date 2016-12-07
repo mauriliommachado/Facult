@@ -14,6 +14,8 @@ import java.util.List;
 public interface DAO<E> {
     public void save(E entity);
 
+    public void remove(Integer id);
+    
     public List<E> list();
 
     public E find(Integer id);

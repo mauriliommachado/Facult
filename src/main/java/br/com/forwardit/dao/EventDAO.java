@@ -40,4 +40,9 @@ public class EventDAO implements DAO<Event> {
                         Event.class).setParameter("id", id);
         return query.getSingleResult();
     }
+
+    @Override
+    public void remove(Integer id) {
+        manager.remove(find(id));
+    }
 }

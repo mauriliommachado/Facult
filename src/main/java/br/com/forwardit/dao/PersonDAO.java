@@ -59,4 +59,9 @@ public class PersonDAO implements DAO<Person>, UserDetailsService {
         }
         return p;
     }
+
+    @Override
+    public void remove(Integer id) {
+        manager.remove(find(id));
+    }
 }

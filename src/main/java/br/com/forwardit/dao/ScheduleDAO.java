@@ -39,4 +39,9 @@ public class ScheduleDAO implements DAO<Schedule> {
                         Schedule.class).setParameter("id", id);
         return query.getSingleResult();
     }
+
+    @Override
+    public void remove(Integer id) {
+        manager.remove(find(id));
+    }
 }

@@ -39,4 +39,9 @@ public class StateDAO implements DAO<State> {
                         State.class).setParameter("id", id);
         return query.getSingleResult();
     }
+
+    @Override
+    public void remove(Integer id) {
+        manager.remove(find(id));
+    }
 }

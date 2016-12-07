@@ -40,4 +40,9 @@ public class CityDAO implements DAO<City> {
                         City.class).setParameter("id", id);
         return query.getSingleResult();
     }
+
+    @Override
+    public void remove(Integer id) {
+        manager.remove(find(id));
+    }
 }

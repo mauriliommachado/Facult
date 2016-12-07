@@ -28,6 +28,7 @@ public class GradeDAO implements DAO<Grade> {
     }
     
     
+    @Override
     public void remove(Integer id) {
         manager.remove(find(id));
     }

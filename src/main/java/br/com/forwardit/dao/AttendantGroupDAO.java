@@ -37,4 +37,9 @@ public class AttendantGroupDAO implements DAO<AttendantGroup>{
                         AttendantGroup.class).setParameter("id", id);
         return query.getSingleResult();
     }    
+
+    @Override
+    public void remove(Integer id) {
+        manager.remove(find(id));
+    }
 }
