@@ -15,8 +15,10 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToOne;
+import javax.validation.constraints.Max;
 import org.hibernate.validator.constraints.NotBlank;
 import org.joda.time.LocalDateTime;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
@@ -36,7 +38,9 @@ public class Person implements UserDetails{
     private String record;
     @NotBlank
     private String password;
+    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
     private LocalDateTime registerDate;
+    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
     private LocalDateTime birthday;
     @OneToOne
     private Address address;
@@ -50,8 +54,6 @@ public class Person implements UserDetails{
     @ManyToMany
     private List<Messages> messages;
     private PersonType type;
-    @ManyToMany
-    private List<Course> courses;
     @ManyToMany(fetch = FetchType.EAGER)
     private List<Roles> roles = new ArrayList<>();
 
@@ -133,14 +135,6 @@ public class Person implements UserDetails{
 
     public void setRecord(String record) {
         this.record = record;
-    }
-
-    public List<Course> getCourses() {
-        return courses;
-    }
-
-    public void setCourses(List<Course> courses) {
-        this.courses = courses;
     }
 
     public String getPassword() {
