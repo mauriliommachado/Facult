@@ -21,7 +21,7 @@
                             <td>${person.name}</td>
                             <td class="remove-item">
                                 <form:form method="post"
-                                           action="${spring:mvcUrl('PC#remove').arg(0,grade.id).build()}">
+                                           action="${spring:mvcUrl('PC#remove').arg(0,person.id).build()}">
                                     <button type="submit" class="btn btn-danger">Deletar</button>
                                 </form:form>
                             </td>

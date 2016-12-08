@@ -11,6 +11,9 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
@@ -32,10 +35,10 @@ public class Course {
     private String description;
     @ManyToOne
     private Person minister;
-    @ElementCollection
+    @ManyToMany
     private List<Person> supports;
-    @OneToOne
-    private AttendantGroup enrolled;
+    @ManyToMany
+    private List<AttendantGroup> enrolledGroups;
     @Min(0)
     private int numberOfEvaluations;
     @OneToOne
@@ -87,12 +90,12 @@ public class Course {
         this.supports = supports;
     }
 
-    public AttendantGroup getEnrolled() {
-        return enrolled;
+    public List<AttendantGroup> getEnrolledGroups() {
+        return enrolledGroups;
     }
 
-    public void setEnrolled(AttendantGroup enrolled) {
-        this.enrolled = enrolled;
+    public void setEnrolledGroups(List<AttendantGroup> enrolledGroups) {
+        this.enrolledGroups = enrolledGroups;
     }
 
     public int getNumberOfEvaluations() {

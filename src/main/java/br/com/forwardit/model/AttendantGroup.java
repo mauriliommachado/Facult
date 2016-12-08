@@ -26,6 +26,7 @@ public class AttendantGroup {
     private String description;
     @ElementCollection
     private List<Person> attendants;
+    
 
     public Integer getId() {
         return id;
@@ -50,5 +51,4 @@ public class AttendantGroup {
     public void setDescription(String description) {
         this.description = description;
     }
-    
 }

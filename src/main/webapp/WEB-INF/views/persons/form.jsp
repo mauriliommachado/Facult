@@ -35,10 +35,15 @@
                                 <form:label path="guardian" class="control-label">Guardião:</form:label>
                                 <form:checkbox class="checkbox" path="guardian"/>
                             </div>
-                            <div class="form-group">
-                                <form:label path="type" class="control-label">Tipo:</form:label>
-                                <form:select path="type" items="${types}" var="type"/>
-                            </div>
+                            <c:forEach items="${types}" var="personType" varStatus="status">
+                                <div class="form-group">
+                                    <label for="person_${type}" class="control-label col-sm-2">${type}:</label>
+                                    <div class="col-sm-6">
+                                        <form:input class="form-control" path="persons[${status.index}].value" id="person_${type}"/>
+                                    </div>
+                                    <form:input type="hidden" path="persons[${status.index}].bookType" value="${type}"/>
+                                </div>
+                            </c:forEach>
                             <div class="form-group">
                                 <form:label path="password" class="control-label">Senha:</form:label>
                                 <form:input class="form-control" type="password" path="password" onfocus="this.select();" required="required"/>

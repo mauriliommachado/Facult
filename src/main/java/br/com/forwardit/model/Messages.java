@@ -5,16 +5,14 @@
  */
 package br.com.forwardit.model;
 
-import java.util.List;
-import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import org.hibernate.validator.constraints.NotBlank;
 import org.joda.time.LocalTime;
+import org.springframework.format.annotation.DateTimeFormat;
 
 /**
  *
@@ -28,9 +26,9 @@ public class Messages {
     private MessageType type;
     @NotBlank
     private String message;
-    @ElementCollection
-    private List<Person> persons;
+    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
     private LocalTime release;
+    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
     private LocalTime expire;
     @ManyToOne
     private Event event;
@@ -83,14 +81,6 @@ public class Messages {
 
     public void setMessage(String message) {
         this.message = message;
-    }
-
-    public List<Person> getPersons() {
-        return persons;
-    }
-
-    public void setPersons(List<Person> persons) {
-        this.persons = persons;
     }
 
     public Person getPersonFrom() {
