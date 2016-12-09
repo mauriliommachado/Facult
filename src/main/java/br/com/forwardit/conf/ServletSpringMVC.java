@@ -34,7 +34,4 @@ public class ServletSpringMVC extends AbstractAnnotationConfigDispatcherServletI
     protected void customizeRegistration(ServletRegistration.Dynamic registration) {
         registration.setMultipartConfig(new MultipartConfigElement(""));
     }
-    
-    
-
 }

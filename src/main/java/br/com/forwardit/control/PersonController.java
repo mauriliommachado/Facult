@@ -54,6 +54,7 @@ public class PersonController {
     @RequestMapping("/form")
     public ModelAndView form(Person person) {
         ModelAndView modelAndView = new ModelAndView("persons/form");
+        modelAndView.addObject("person", person);
         return modelAndView;
     }
 

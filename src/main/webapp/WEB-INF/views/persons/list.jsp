@@ -12,6 +12,7 @@
                 <thead>
                     <tr>
                         <td>Nome</td>
+                        <td style="width: 60px">Editar</td>
                         <td style="width: 60px">Deletar</td>
                     </tr>
                 </thead>
@@ -19,7 +20,13 @@
                     <c:forEach items="${persons}" var="person">
                         <tr>
                             <td>${person.name}</td>
-                            <td class="remove-item">
+                            <td>
+                                <form:form commandName="person"
+                                           method="post" servletRelativeAction="${spring:mvcUrl('PC#save').build()}">
+                                    <button type="submit" class="btn btn-success">Editar</button>
+                                </form:form>
+                            </td>
+                            <td>
                                 <form:form method="post"
                                            action="${spring:mvcUrl('PC#remove').arg(0,person.id).build()}">
                                     <button type="submit" class="btn btn-danger">Deletar</button>

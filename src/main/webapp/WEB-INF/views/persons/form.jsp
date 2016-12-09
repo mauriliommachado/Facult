@@ -1,10 +1,10 @@
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 <%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%> 
 <%@taglib tagdir="/WEB-INF/tags" prefix="customTags"%>
 
 <customTags:dashboard title="Cadastro de Pessoas" active="register">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
             <div class="login-panel panel panel-default">
@@ -28,11 +28,11 @@
                                 <form:input class="form-control" type="number" path="cpf" onfocus="this.select();" required="required"/>
                             </div>
                             <div class="form-group">
-                                <form:label path="birthday" class="control-label">Anivers√°rio:</form:label>
+                                <form:label path="birthday" class="control-label">Anivers·rio:</form:label>
                                 <form:input class="form-control" type="date" path="birthday" onfocus="this.select();" required="required"/>
                             </div>
                             <div class="form-group">
-                                <form:label path="guardian" class="control-label">Guardi√£o:</form:label>
+                                <form:label path="guardian" class="control-label">Guardi„o:</form:label>
                                 <form:checkbox class="checkbox" path="guardian"/>
                             </div>
                             <c:forEach items="${types}" var="personType" varStatus="status">
@@ -49,7 +49,7 @@
                                 <form:input class="form-control" type="password" path="password" onfocus="this.select();" required="required"/>
                             </div>
                             <div class="form-group">
-                                <form:label path="notes" class="control-label">Observa√ß√£o:</form:label>
+                                <form:label path="notes" class="control-label">ObservaÁ„o:</form:label>
                                 <form:textarea class="form-control" path="notes" onfocus="this.select();" required="required"/>
                             </div>
                             <button class="btn btn-primary" type="submit">Gravar</button>
