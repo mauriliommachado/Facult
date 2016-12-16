@@ -5,58 +5,77 @@
  */
 package br.com.forwardit.model;
 
+import java.io.Serializable;
+import java.util.List;
+import javax.persistence.Basic;
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToOne;
-import org.hibernate.validator.constraints.NotBlank;
-import org.joda.time.LocalTime;
-import org.springframework.format.annotation.DateTimeFormat;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
  * @author mauri
  */
 @Entity
-public class Messages {
+@Table(name = "message")
+@XmlRootElement
+@NamedQueries({
+    @NamedQuery(name = "Message.findAll", query = "SELECT m FROM Messages m"),
+    @NamedQuery(name = "Message.findById", query = "SELECT m FROM Messages m WHERE m.id = :id"),
+    @NamedQuery(name = "Message.findByText", query = "SELECT m FROM Messages m WHERE m.text = :text"),
+    @NamedQuery(name = "Message.findByScheduleId", query = "SELECT m FROM Messages m WHERE m.scheduleId = :scheduleId")})
+public class Messages implements Serializable {
+
+    private static final long serialVersionUID = 1L;
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Basic(optional = false)
+    @NotNull
+    @Column(name = "id")
     private Integer id;
+    @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 255)
+    @Column(name = "text")
+    private String text;
+    @Basic(optional = false)
+    @NotNull
+    @Column(name = "schedule_id")
+    private int scheduleId;
+    @Basic(optional = false)
+    @NotNull
+    @Column(name = "type")
     private MessageType type;
-    @NotBlank
-    private String message;
-    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
-    private LocalTime release;
-    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
-    private LocalTime expire;
-    @ManyToOne
-    private Event event;
-    @ManyToOne
-    private Person personFrom;
 
-    public Event getEvent() {
-        return event;
+    public MessageType getType() {
+        return type;
     }
 
-    public void setEvent(Event event) {
-        this.event = event;
+    public void setType(MessageType type) {
+        this.type = type;
+    }
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "messageId")
+    private List<MessagesPerson> messagesPersonList;
+
+    public Messages() {
     }
 
-    public LocalTime getRelease() {
-        return release;
+    public Messages(Integer id) {
+        this.id = id;
     }
 
-    public void setRelease(LocalTime release) {
-        this.release = release;
-    }
-
-    public LocalTime getExpire() {
-        return expire;
-    }
-
-    public void setExpire(LocalTime expire) {
-        this.expire = expire;
+    public Messages(Integer id, String text, int scheduleId) {
+        this.id = id;
+        this.text = text;
+        this.scheduleId = scheduleId;
     }
 
     public Integer getId() {
@@ -67,27 +86,54 @@ public class Messages {
         this.id = id;
     }
 
-    public MessageType getType() {
-        return type;
+    public String getText() {
+        return text;
     }
 
-    public void setType(MessageType type) {
-        this.type = type;
+    public void setText(String text) {
+        this.text = text;
     }
 
-    public String getMessage() {
-        return message;
+    public int getScheduleId() {
+        return scheduleId;
     }
 
-    public void setMessage(String message) {
-        this.message = message;
+    public void setScheduleId(int scheduleId) {
+        this.scheduleId = scheduleId;
     }
 
-    public Person getPersonFrom() {
-        return personFrom;
+    @XmlTransient
+    public List<MessagesPerson> getMessagesPersonList() {
+        return messagesPersonList;
     }
 
-    public void setPersonFrom(Person personFrom) {
-        this.personFrom = personFrom;
+    public void setMessagesPersonList(List<MessagesPerson> messagesPersonList) {
+        this.messagesPersonList = messagesPersonList;
     }
+
+    @Override
+    public int hashCode() {
+        int hash = 0;
+        hash += (id != null ? id.hashCode() : 0);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object object) {
+        // TODO: Warning - this method won't work in the case the id fields are not set
+        if (!(object instanceof Messages)) {
+            return false;
+        }
+        Messages other = (Messages) object;
+        if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public String toString() {
+        return "br.com.forwardit.model.Message[ id=" + id + " ]";
+    }
+    
 }

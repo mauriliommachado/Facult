@@ -7,7 +7,7 @@ package br.com.forwardit.model;
 
 /**
  *
- * @author Maurilio
+ * @author mauri
  */
 public enum EventType {
     TEST,BRAKE,DAYOFF,HOLIDAY,CLASS,COURSE,OTHER

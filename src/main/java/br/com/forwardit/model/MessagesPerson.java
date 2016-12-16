@@ -6,58 +6,50 @@
 package br.com.forwardit.model;
 
 import java.io.Serializable;
-import java.util.List;
 import javax.persistence.Basic;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
-import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
  * @author mauri
  */
 @Entity
-@Table(name = "course")
+@Table(name = "messages_person")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "Course.findAll", query = "SELECT c FROM Course c"),
-    @NamedQuery(name = "Course.findById", query = "SELECT c FROM Course c WHERE c.id = :id"),
-    @NamedQuery(name = "Course.findByName", query = "SELECT c FROM Course c WHERE c.name = :name")})
-public class Course implements Serializable {
+    @NamedQuery(name = "MessagesPerson.findAll", query = "SELECT m FROM MessagesPerson m"),
+    @NamedQuery(name = "MessagesPerson.findById", query = "SELECT m FROM MessagesPerson m WHERE m.id = :id")})
+public class MessagesPerson implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
-    @NotNull
     @Column(name = "id")
     private Integer id;
-    @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 40)
-    @Column(name = "name")
-    private String name;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "courseId")
-    private List<Discipline> disciplineList;
+    @JoinColumn(name = "message_id", referencedColumnName = "id")
+    @ManyToOne(optional = false)
+    private Messages messageId;
+    @JoinColumn(name = "person_id", referencedColumnName = "id")
+    @OneToOne(optional = false)
+    private Person personId;
 
-    public Course() {
+    public MessagesPerson() {
     }
 
-    public Course(Integer id) {
+    public MessagesPerson(Integer id) {
         this.id = id;
-    }
-
-    public Course(Integer id, String name) {
-        this.id = id;
-        this.name = name;
     }
 
     public Integer getId() {
@@ -68,21 +60,20 @@ public class Course implements Serializable {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public Messages getMessageId() {
+        return messageId;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setMessageId(Messages messageId) {
+        this.messageId = messageId;
     }
 
-    @XmlTransient
-    public List<Discipline> getDisciplineList() {
-        return disciplineList;
+    public Person getPersonId() {
+        return personId;
     }
 
-    public void setDisciplineList(List<Discipline> disciplineList) {
-        this.disciplineList = disciplineList;
+    public void setPersonId(Person personId) {
+        this.personId = personId;
     }
 
     @Override
@@ -95,10 +86,10 @@ public class Course implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Course)) {
+        if (!(object instanceof MessagesPerson)) {
             return false;
         }
-        Course other = (Course) object;
+        MessagesPerson other = (MessagesPerson) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
@@ -107,7 +98,7 @@ public class Course implements Serializable {
 
     @Override
     public String toString() {
-        return "br.com.forwardit.model.Course[ id=" + id + " ]";
+        return "br.com.forwardit.model.MessagesPerson[ id=" + id + " ]";
     }
     
 }

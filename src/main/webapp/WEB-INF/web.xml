@@ -13,7 +13,7 @@
         <error-code>403</error-code>
         <location>/WEB-INF/403.jsp</location>
     </error-page>
-      <filter>
+     <filter>
      <filter-name>SetCharacterEncodingFilter</filter-name>
      <filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
      <init-param>

@@ -28,7 +28,11 @@ public class PersonDAO implements DAO<Person>, UserDetailsService {
 
     @Override
     public void save(Person entity) {
-        manager.persist(entity);
+        if (entity.getId() == null) {
+            manager.persist(entity);
+        } else {
+            manager.merge(entity);
+        }
     }
 
     @Override
@@ -52,10 +56,10 @@ public class PersonDAO implements DAO<Person>, UserDetailsService {
                         "select distinct(p) from Person p where p.record=:record",
                         Person.class).setParameter("record", userName);
         Person p;
-        try{
+        try {
             p = query.getSingleResult();
-        }catch(NoResultException nre){
-            throw new UsernameNotFoundException("O usuário "+userName+" não existe");
+        } catch (NoResultException nre) {
+            throw new UsernameNotFoundException("O usuário " + userName + " não existe");
         }
         return p;
     }

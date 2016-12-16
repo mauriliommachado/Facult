@@ -6,58 +6,49 @@
 package br.com.forwardit.model;
 
 import java.io.Serializable;
-import java.util.List;
 import javax.persistence.Basic;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
  * @author mauri
  */
 @Entity
-@Table(name = "course")
+@Table(name = "person_roles")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "Course.findAll", query = "SELECT c FROM Course c"),
-    @NamedQuery(name = "Course.findById", query = "SELECT c FROM Course c WHERE c.id = :id"),
-    @NamedQuery(name = "Course.findByName", query = "SELECT c FROM Course c WHERE c.name = :name")})
-public class Course implements Serializable {
+    @NamedQuery(name = "PersonRoles.findAll", query = "SELECT p FROM PersonRoles p"),
+    @NamedQuery(name = "PersonRoles.findById", query = "SELECT p FROM PersonRoles p WHERE p.id = :id")})
+public class PersonRoles implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
-    @NotNull
     @Column(name = "id")
     private Integer id;
-    @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 40)
-    @Column(name = "name")
-    private String name;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "courseId")
-    private List<Discipline> disciplineList;
+    @JoinColumn(name = "person_id", referencedColumnName = "id")
+    @ManyToOne(optional = false)
+    private Person personId;
+    @JoinColumn(name = "roles_name", referencedColumnName = "name")
+    @ManyToOne(optional = false)
+    private Roles rolesName;
 
-    public Course() {
+    public PersonRoles() {
     }
 
-    public Course(Integer id) {
+    public PersonRoles(Integer id) {
         this.id = id;
-    }
-
-    public Course(Integer id, String name) {
-        this.id = id;
-        this.name = name;
     }
 
     public Integer getId() {
@@ -68,21 +59,20 @@ public class Course implements Serializable {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public Person getPersonId() {
+        return personId;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setPersonId(Person personId) {
+        this.personId = personId;
     }
 
-    @XmlTransient
-    public List<Discipline> getDisciplineList() {
-        return disciplineList;
+    public Roles getRolesName() {
+        return rolesName;
     }
 
-    public void setDisciplineList(List<Discipline> disciplineList) {
-        this.disciplineList = disciplineList;
+    public void setRolesName(Roles rolesName) {
+        this.rolesName = rolesName;
     }
 
     @Override
@@ -95,10 +85,10 @@ public class Course implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Course)) {
+        if (!(object instanceof PersonRoles)) {
             return false;
         }
-        Course other = (Course) object;
+        PersonRoles other = (PersonRoles) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
@@ -107,7 +97,7 @@ public class Course implements Serializable {
 
     @Override
     public String toString() {
-        return "br.com.forwardit.model.Course[ id=" + id + " ]";
+        return "br.com.forwardit.model.PersonRoles[ id=" + id + " ]";
     }
     
 }

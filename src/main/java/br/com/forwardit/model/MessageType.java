@@ -7,8 +7,8 @@ package br.com.forwardit.model;
 
 /**
  *
- * @author Maurilio
+ * @author mauri
  */
 public enum MessageType {
-    WARNING,FINANCIAL,MEETING,PEDAGOGID
+    WARNING,FINANCIAL,MEETING,PEDAGOGIC
 }

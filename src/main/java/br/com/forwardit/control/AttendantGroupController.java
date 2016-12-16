@@ -6,7 +6,7 @@
 package br.com.forwardit.control;
 
 import br.com.forwardit.dao.AttendantGroupDAO;
-import br.com.forwardit.model.AttendantGroup;
+import br.com.forwardit.model.Attendantgroup;
 import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -32,7 +32,7 @@ public class AttendantGroupController {
     
     @RequestMapping(method = RequestMethod.POST)
     public ModelAndView save(@RequestParam("summary") MultipartFile summary, 
-            @Validated AttendantGroup attendantGroup, BindingResult bindingResult,
+            @Validated Attendantgroup attendantGroup, BindingResult bindingResult,
             RedirectAttributes redirectAttributes) {
         if (bindingResult.hasErrors()) {
             return form(attendantGroup);
@@ -44,7 +44,7 @@ public class AttendantGroupController {
     }
     
     @RequestMapping("/form")
-    public ModelAndView form(AttendantGroup attendantGroup) {
+    public ModelAndView form(Attendantgroup attendantGroup) {
         ModelAndView modelAndView = new ModelAndView("persons/form");
         return modelAndView;
     }

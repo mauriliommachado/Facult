@@ -33,7 +33,7 @@
         </div>
         <br>
         <a href="${contextPath}/FitEdu/grades/form"
-           class="btn btn-default" 
+           class="btn btn-primary" 
            aria-label="Left Align">Adicionar novo</a>
     </div>
 

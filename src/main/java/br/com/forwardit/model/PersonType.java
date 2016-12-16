@@ -10,5 +10,5 @@ package br.com.forwardit.model;
  * @author mauri
  */
 public enum PersonType {
-     STUDANT,GUARDIAN,EMPLOYEE
+    STUDANT,GUARDIAN,EMPLOYEE
 }

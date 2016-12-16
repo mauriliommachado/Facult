@@ -7,7 +7,7 @@ package br.com.forwardit.model;
 
 /**
  *
- * @author Maurilio
+ * @author mauri
  */
 public enum Frequency {
     DAYLY,WEEKLY,MONTHLY,YEARLY

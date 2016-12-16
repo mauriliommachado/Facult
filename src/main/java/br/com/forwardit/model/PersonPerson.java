@@ -24,58 +24,47 @@ import javax.xml.bind.annotation.XmlRootElement;
  * @author mauri
  */
 @Entity
-@Table(name = "evaluation")
+@Table(name = "person_person")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "Evaluation.findAll", query = "SELECT e FROM Evaluation e"),
-    @NamedQuery(name = "Evaluation.findById", query = "SELECT e FROM Evaluation e WHERE e.id = :id")})
-public class Evaluation implements Serializable {
+    @NamedQuery(name = "PersonPerson.findAll", query = "SELECT p FROM PersonPerson p"),
+    @NamedQuery(name = "PersonPerson.findByInt1", query = "SELECT p FROM PersonPerson p WHERE p.int1 = :int1")})
+public class PersonPerson implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
-    @Column(name = "id")
-    private Integer id;
-    @JoinColumn(name = "event_id", referencedColumnName = "id")
-    @ManyToOne
-    private Event eventId;
-    @JoinColumn(name = "grade_id", referencedColumnName = "id")
-    @ManyToOne
-    private Grade gradeId;
+    @Column(name = "int")
+    private Integer int1;
+    @JoinColumn(name = "guardian_id", referencedColumnName = "id")
+    @ManyToOne(optional = false)
+    private Person guardianId;
     @JoinColumn(name = "person_id", referencedColumnName = "id")
-    @ManyToOne
+    @ManyToOne(optional = false)
     private Person personId;
 
-    public Evaluation() {
+    public PersonPerson() {
     }
 
-    public Evaluation(Integer id) {
-        this.id = id;
+    public PersonPerson(Integer int1) {
+        this.int1 = int1;
     }
 
-    public Integer getId() {
-        return id;
+    public Integer getInt1() {
+        return int1;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
+    public void setInt1(Integer int1) {
+        this.int1 = int1;
     }
 
-    public Event getEventId() {
-        return eventId;
+    public Person getGuardianId() {
+        return guardianId;
     }
 
-    public void setEventId(Event eventId) {
-        this.eventId = eventId;
-    }
-
-    public Grade getGradeId() {
-        return gradeId;
-    }
-
-    public void setGradeId(Grade gradeId) {
-        this.gradeId = gradeId;
+    public void setGuardianId(Person guardianId) {
+        this.guardianId = guardianId;
     }
 
     public Person getPersonId() {
@@ -89,18 +78,18 @@ public class Evaluation implements Serializable {
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (id != null ? id.hashCode() : 0);
+        hash += (int1 != null ? int1.hashCode() : 0);
         return hash;
     }
 
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Evaluation)) {
+        if (!(object instanceof PersonPerson)) {
             return false;
         }
-        Evaluation other = (Evaluation) object;
-        if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
+        PersonPerson other = (PersonPerson) object;
+        if ((this.int1 == null && other.int1 != null) || (this.int1 != null && !this.int1.equals(other.int1))) {
             return false;
         }
         return true;
@@ -108,7 +97,7 @@ public class Evaluation implements Serializable {
 
     @Override
     public String toString() {
-        return "br.com.forwardit.model.Evaluation[ id=" + id + " ]";
+        return "br.com.forwardit.model.PersonPerson[ int1=" + int1 + " ]";
     }
     
 }

@@ -45,7 +45,7 @@ public class GradeController {
     @RequestMapping(method = RequestMethod.POST, value = "/{gradeId}")
     public ModelAndView remove(@PathVariable("gradeId") Integer gradeId) {
         gradeDAO.remove(gradeId);
-        return list();
+        return new ModelAndView("redirect:grades");
     }
 
     @RequestMapping("/form")

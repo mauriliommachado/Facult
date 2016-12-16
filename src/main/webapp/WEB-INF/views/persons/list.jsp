@@ -22,7 +22,7 @@
                             <td>${person.name}</td>
                             <td>
                                 <form:form commandName="person"
-                                           method="post" servletRelativeAction="${spring:mvcUrl('PC#save').build()}">
+                                           method="post" servletRelativeAction="${spring:mvcUrl('PC#edit').arg(0,person.id).build()}">
                                     <button type="submit" class="btn btn-success">Editar</button>
                                 </form:form>
                             </td>
@@ -40,7 +40,7 @@
         </div>
         <br>
         <a href="${contextPath}/FitEdu/persons/form"
-           class="btn btn-default" 
+           class="btn btn-primary" 
            aria-label="Left Align">Adicionar novo</a>
     </div>
 

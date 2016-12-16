@@ -5,9 +5,7 @@
  */
 package br.com.forwardit.control;
 
-import br.com.forwardit.dao.GradeDAO;
 import br.com.forwardit.dao.PersonDAO;
-import br.com.forwardit.model.Grade;
 import br.com.forwardit.model.Person;
 import br.com.forwardit.model.PersonType;
 import javax.transaction.Transactional;
@@ -18,6 +16,7 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -56,6 +55,11 @@ public class PersonController {
         ModelAndView modelAndView = new ModelAndView("persons/form");
         modelAndView.addObject("person", person);
         return modelAndView;
+    }
+    
+    @RequestMapping("/edit")
+    public ModelAndView edit(@RequestParam("id") Integer personId) {
+        return form(personDao.find(personId));
     }
 
     @RequestMapping(method = RequestMethod.GET)

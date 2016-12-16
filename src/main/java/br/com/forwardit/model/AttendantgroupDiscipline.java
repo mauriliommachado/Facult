@@ -6,7 +6,6 @@
 package br.com.forwardit.model;
 
 import java.io.Serializable;
-import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -15,25 +14,23 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
  * @author mauri
  */
 @Entity
-@Table(name = "country")
+@Table(name = "attendantgroup_discipline")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "Country.findAll", query = "SELECT c FROM Country c"),
-    @NamedQuery(name = "Country.findById", query = "SELECT c FROM Country c WHERE c.id = :id"),
-    @NamedQuery(name = "Country.findByName", query = "SELECT c FROM Country c WHERE c.name = :name")})
-public class Country implements Serializable {
+    @NamedQuery(name = "AttendantgroupDiscipline.findAll", query = "SELECT a FROM AttendantgroupDiscipline a"),
+    @NamedQuery(name = "AttendantgroupDiscipline.findById", query = "SELECT a FROM AttendantgroupDiscipline a WHERE a.id = :id"),
+    @NamedQuery(name = "AttendantgroupDiscipline.findByAttendantgroupId", query = "SELECT a FROM AttendantgroupDiscipline a WHERE a.attendantgroupId = :attendantgroupId"),
+    @NamedQuery(name = "AttendantgroupDiscipline.findByDisciplineId", query = "SELECT a FROM AttendantgroupDiscipline a WHERE a.disciplineId = :disciplineId")})
+public class AttendantgroupDiscipline implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -43,22 +40,24 @@ public class Country implements Serializable {
     private Integer id;
     @Basic(optional = false)
     @NotNull
-    @Size(min = 1, max = 255)
-    @Column(name = "name")
-    private String name;
-    @OneToMany(mappedBy = "countryId")
-    private List<State> stateList;
+    @Column(name = "attendantgroup_id")
+    private int attendantgroupId;
+    @Basic(optional = false)
+    @NotNull
+    @Column(name = "discipline_id")
+    private int disciplineId;
 
-    public Country() {
+    public AttendantgroupDiscipline() {
     }
 
-    public Country(Integer id) {
+    public AttendantgroupDiscipline(Integer id) {
         this.id = id;
     }
 
-    public Country(Integer id, String name) {
+    public AttendantgroupDiscipline(Integer id, int attendantgroupId, int disciplineId) {
         this.id = id;
-        this.name = name;
+        this.attendantgroupId = attendantgroupId;
+        this.disciplineId = disciplineId;
     }
 
     public Integer getId() {
@@ -69,21 +68,20 @@ public class Country implements Serializable {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public int getAttendantgroupId() {
+        return attendantgroupId;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setAttendantgroupId(int attendantgroupId) {
+        this.attendantgroupId = attendantgroupId;
     }
 
-    @XmlTransient
-    public List<State> getStateList() {
-        return stateList;
+    public int getDisciplineId() {
+        return disciplineId;
     }
 
-    public void setStateList(List<State> stateList) {
-        this.stateList = stateList;
+    public void setDisciplineId(int disciplineId) {
+        this.disciplineId = disciplineId;
     }
 
     @Override
@@ -96,10 +94,10 @@ public class Country implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Country)) {
+        if (!(object instanceof AttendantgroupDiscipline)) {
             return false;
         }
-        Country other = (Country) object;
+        AttendantgroupDiscipline other = (AttendantgroupDiscipline) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
@@ -108,7 +106,7 @@ public class Country implements Serializable {
 
     @Override
     public String toString() {
-        return "br.com.forwardit.model.Country[ id=" + id + " ]";
+        return "br.com.forwardit.model.AttendantgroupDiscipline[ id=" + id + " ]";
     }
     
 }
