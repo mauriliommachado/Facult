@@ -2,7 +2,7 @@
 <%@taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 <%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%> 
 <%@taglib tagdir="/WEB-INF/tags" prefix="customTags"%>
-<%@page contentType="text/html; charset=UTF-8"%>
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
 
 <customTags:dashboard title="Cadastro de Pessoas" active="register">
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
